@@ -32,54 +32,18 @@ git commit -m "コミットメッセージ #issue番号"
 git clone https://github.com/YuyaNakamura0139/go-sample.git
 ```
 
-コンテナ作成
+コマンド
 
 ```zsh
-docker-compose build
-```
-
-コンテナ起動
-
-```zsh
-docker-compose up
-```
-
-コンテナ内のターミナルに入る
-
-```zsh
-docker-compose exec -it go-sample /bin/sh
-```
-
-コンテナ停止
-
-```zsh
-docker-compose stop
-```
-
-コンテナ再起動
-
-```zsh
-docker-compose start
-```
-
-コンテナ削除
-
-```zsh
-docker-compose down
-```
-
-全部削除したい場合
-
-```zsh
-docker-compose down --rmi all --volumes
-```
-
-### dbコンテナ
-
-dbのシェルに入る
-
-```zsh
-docker-compose exec db /bin/sh
+make all: ビルド~コンテナ起動~コンテナの状態の表示
+make reset: コンテナの停止~未使用リソースの削除~ビルド~コンテナ起動~コンテナの状態の表示
+make prune: 未使用のリソースを削除
+make build: ビルド
+make up: コンテナ起動
+make ps: コンテナの状態の表示
+make down: コンテナの停止
+make login_app: appコンテナにログイン
+make login_db: dbコンテナにログイン
 ```
 
 ## 参考文献
