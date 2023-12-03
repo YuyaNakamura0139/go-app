@@ -1,7 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"database/sql"
+	"fmt"
+	"log"
+
+	_ "github.com/lib/pq"
+)
 
 func main() {
-	fmt.Println("Hello World!")
+	connStr := "user=postgres password=postgres dbname=app host=db sslmode=disable"
+	db, err := sql.Open("postgres", connStr)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	_, err = db.Exec("CREATE TABLE sample (id SERIAL PRIMARY KEY, data VARCHAR(100))")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Successfully connected!")
 }
