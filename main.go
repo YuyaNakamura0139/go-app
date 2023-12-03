@@ -16,7 +16,22 @@ func main() {
 	}
 	defer db.Close()
 
-	_, err = db.Exec("CREATE TABLE sample (id SERIAL PRIMARY KEY, data VARCHAR(100))")
+	rows, err := db.Query("SELECT * FROM sample")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var id int
+		var data string
+		err = rows.Scan(&id, &data)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(id, data)
+	}
+	err = rows.Err()
 	if err != nil {
 		log.Fatal(err)
 	}
