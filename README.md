@@ -74,6 +74,14 @@ docker-compose down
 docker-compose down --rmi all --volumes
 ```
 
+### dbコンテナ
+
+dbのシェルに入る
+
+```zsh
+docker-compose exec db /bin/sh
+```
+
 ## 参考文献
 
 - [【golang】DockerでGoの開発環境を構築する](https://zenn.dev/yusuke49/articles/9ed37838861b1d)
