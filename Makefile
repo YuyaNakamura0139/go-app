@@ -1,8 +1,9 @@
+SERVICE_NAME=go
 APP_CONTAINER=go-app
 DB_CONTAINER=go-app-db
 
-all: build up ps
-reset: down prune build up ps
+all: build mod_tidy up ps
+reset: down prune build mod_tidy up ps 
 
 # 未使用のリソースを削除
 prune:
@@ -19,3 +20,6 @@ login_app:
 	docker exec -it ${APP_CONTAINER} /bin/sh
 login_db:
 	docker exec -it ${DB_CONTAINER} psql -U postgres -d app
+
+mod_tidy:
+	docker-compose run --rm ${SERVICE_NAME} go mod tidy
