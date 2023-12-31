@@ -19,7 +19,7 @@ down:
 login_app:
 	docker exec -it ${APP_CONTAINER} /bin/sh
 login_db:
-	docker exec -it ${DB_CONTAINER} psql -U postgres -d app
+	docker exec -it ${DB_CONTAINER} psql -U postgres -d postgres
 
 mod_tidy:
 	docker-compose run --rm ${SERVICE_NAME} go mod tidy
